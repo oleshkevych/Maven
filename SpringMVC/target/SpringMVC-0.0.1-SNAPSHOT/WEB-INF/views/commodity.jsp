@@ -21,14 +21,14 @@
 	</c:forEach>
 	${commodities}
 	<br>
-	<form action="selectGet" method="post">
+	<sf:form action="selectGet" method="post">
 	<select name="formSelect">
 	<c:forEach var="comm" items="${commodities}">
 		<option>${comm.name}</option>
 	</c:forEach>
 	</select>
 	<button>select</button>
-	</form>
+	</sf:form>
 	
 		<%-- <form action="newCommodity" method="post">
 			<input name="nameCommodity" placeholder="commodity name"/>

@@ -11,4 +11,5 @@ public interface UserService {
 	User findOneUser(int id);
 	void delete(int id);
 	
+	User fetchUser(int id);
 }

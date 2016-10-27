@@ -3,11 +3,13 @@ package ua.com.buy_me.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.com.buy_me.entity.Role;
 import ua.com.buy_me.entity.User;
@@ -45,5 +47,13 @@ public class UserServiceImpl  implements UserService, UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return userRepository.findByUsername(username);
+	}
+
+	@Modifying
+	@Transactional
+	@Override
+	public User fetchUser(int id) {
+	
+		return userRepository.fetchUser(id);
 	}
 }

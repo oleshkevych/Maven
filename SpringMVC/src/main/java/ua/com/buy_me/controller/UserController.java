@@ -1,15 +1,20 @@
 package ua.com.buy_me.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 
-import javax.enterprise.inject.Model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import ua.com.buy_me.entity.Commodity;
 import ua.com.buy_me.entity.User;
 import ua.com.buy_me.service.UserService;
 
@@ -61,5 +66,31 @@ public class UserController {
 		User user = userService.findOneUser(Integer.parseInt(principal.getName()));
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
+	public String profile(Principal principal, Model model){
+		model.addAttribute("user", userService.fetchUser(Integer.parseInt(principal.getName())));
+		
+		return "profile";
+	}
+	@RequestMapping(value={"/saveImage"}, method=RequestMethod.POST)
+	public String saveImage(@RequestParam("image") MultipartFile file, Principal principal){
+		
+		User user = userService.fetchUser(Integer.parseInt(principal.getName()));
+		
+		String path = "D://Oleshkevych//Advanced//SpringProperlyMVC//Image" + user.getUsername()+"//"+file.getOriginalFilename();
+		File f = new File(path);
+		System.out.println(user.getCommodities().get(10));
+		f.mkdirs();
+		try{
+			file.transferTo(f);
+		}catch(IllegalStateException|IOException e){
+			System.out.println("pipec");
+		}
+		
+		
+		return "redirect:/profile";
+	}
+	
 	
 }

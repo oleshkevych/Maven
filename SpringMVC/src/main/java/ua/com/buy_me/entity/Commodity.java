@@ -1,6 +1,5 @@
 package ua.com.buy_me.entity;
 
-import javax.enterprise.inject.Default;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,7 @@ public class Commodity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private Double price = 5.5;
+	private Double price = 0.0;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;

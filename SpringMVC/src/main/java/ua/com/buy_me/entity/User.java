@@ -29,6 +29,8 @@ public class User implements UserDetails {
 	@Enumerated
 	private Role role;
 	
+	private String pathImage;
+	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 	private List<Commodity> commodities;
 	
@@ -38,6 +40,16 @@ public class User implements UserDetails {
 	}
 
 	
+	public String getPathImage() {
+		return pathImage;
+	}
+
+
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
+	}
+
+
 	public String getUserName() {
 		return String.valueOf(id);
 	}
