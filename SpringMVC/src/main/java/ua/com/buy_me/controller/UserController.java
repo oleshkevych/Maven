@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ua.com.buy_me.entity.Commodity;
 import ua.com.buy_me.entity.User;
+import ua.com.buy_me.service.MailService;
 import ua.com.buy_me.service.UserService;
 
  
@@ -23,6 +24,9 @@ import ua.com.buy_me.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MailService mailService;
 
 	@RequestMapping(value="/newUser", method=RequestMethod.GET)
 	public String user(){
@@ -33,7 +37,7 @@ public class UserController {
 	public String saveCommodity(@RequestParam String nameUser, @RequestParam String emailUser, @RequestParam String phoneUser, @RequestParam String passwordUser){
 			User user = new User(nameUser, phoneUser, passwordUser, emailUser);
 			userService.save(user);
-		
+			mailService.sendMessage("Registration", emailUser, "You Registrated!");		
 		return "redirect:/";
 	}
 	

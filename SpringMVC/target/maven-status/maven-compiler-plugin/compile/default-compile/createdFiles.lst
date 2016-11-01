@@ -2,11 +2,14 @@ ua\com\buy_me\controller\HomeController.class
 ua\com\buy_me\entity\Role.class
 ua\com\buy_me\entity\User.class
 ua\com\buy_me\entity\Commodity.class
+ua\com\buy_me\serviceImpl\MailServiceImpl.class
 ua\com\buy_me\controller\CommodityController.class
 ua\com\buy_me\serviceImpl\UserServiceImpl.class
 ua\com\buy_me\repository\CommodityRepository.class
 ua\com\buy_me\controller\UserController.class
 ua\com\buy_me\service\UserService.class
+ua\com\buy_me\serviceImpl\MailServiceImpl$1.class
+ua\com\buy_me\service\MailService.class
 ua\com\buy_me\serviceImpl\CommodityServiceImpl.class
 ua\com\buy_me\repository\UserRepository.class
 ua\com\buy_me\service\CommodityService.class
