@@ -14,7 +14,7 @@ public class Commodity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private Double price = 0.0;
+	private Double price;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
@@ -46,6 +46,9 @@ public class Commodity {
 	}
 
 	public double getPrice() {
+		if(price == null){
+			price = 0.0;
+		}
 		return price;
 	}
 

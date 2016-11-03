@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ua.com.buy_me.entity.Commodity;
 import ua.com.buy_me.service.CommodityService;
@@ -29,7 +31,7 @@ public class CommodityController {
 		return "commodity";
 	}
 	
-	@RequestMapping(value="/newCommodity", method=RequestMethod.POST)
+/*	@RequestMapping(value="/newCommodity", method=RequestMethod.POST)
 //	public String saveCommodity(@RequestParam String nameCommodity, @RequestParam String priceCommodity){
 //			Commodity commodity = new Commodity(nameCommodity, Double.parseDouble(priceCommodity));
 //			commodityService.save(commodity);
@@ -38,11 +40,20 @@ public class CommodityController {
 		commodityService.save(commodity);
 	
 		return "redirect:/commodity";
-	}
+	}*/
 	
 	@RequestMapping(value="/del/{id}", method=RequestMethod.GET)
 	public String delete(@PathVariable String id){
 		commodityService.delete(Integer.parseInt(id));
 		return "redirect:/commodity";
+	}
+	
+	@RequestMapping(value="/newCommodity", method=RequestMethod.POST)
+	public @ResponseBody String saveCommodityRest(@RequestBody Commodity commodity){
+		System.out.println(commodity);
+		commodityService.save(commodity);
+	
+		
+		return "YYYYEEESSS";
 	}
 }
