@@ -49,6 +49,9 @@ public class User implements UserDetails {
 		this.pathImage = pathImage;
 	}
 
+	public String name() {
+		return username;
+	}
 
 	public String getUserName() {
 		return String.valueOf(id);

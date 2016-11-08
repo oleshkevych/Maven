@@ -15,10 +15,20 @@
 </head>
 <body>
 	Vova
+	<sec:authentication property="name" />
 
 
 	<br>
-	<sec:authentication property="name" />
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<label>wqueidbvcqbwqeuidbcfuiqecuibqervfu</label>
+	${user }
+	<c:forEach var="user" items="${user }">
+	
+		${user.userName } ${user.email} ${user.password}
+	
+		<br>
+	</c:forEach>
+	</sec:authorize>
 	<br>
 	<br>
 
@@ -34,10 +44,13 @@
 	<c:forEach var="commodity" items="${commodities }">
 		${commodity.name } ${commodity.price}
 		<sec:authorize access="isAuthenticated()">
-			<a href="buy/${commodity.id}">Buy</a>
+			  <a href="buy/${commodity.price}">Buy</a>
 		</sec:authorize>
 		<br>
 	</c:forEach>
+	
+	
+	
 	
 	
 	<sec:authorize access="isAuthenticated()">

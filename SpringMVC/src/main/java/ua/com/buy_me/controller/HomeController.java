@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ua.com.buy_me.dto.CommodityDto;
+import ua.com.buy_me.dto.DtoUtilMapper;
+import ua.com.buy_me.dto.UserDto;
 import ua.com.buy_me.entity.Commodity;
 import ua.com.buy_me.entity.User;
 import ua.com.buy_me.service.CommodityService;
@@ -26,8 +29,10 @@ public class HomeController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String commodity(Model model){
-		List<Commodity> commodities = commodityService.findAll();
+		List<CommodityDto> commodities = commodityService.findAllDto();
 		model.addAttribute("commodities", commodities);
+		List<UserDto> users = DtoUtilMapper.listUserToUserDto(userService.findAll());
+		model.addAttribute("users", users);
 //		System.out.println(commodityService.findAll());
 		return "home";
 	}

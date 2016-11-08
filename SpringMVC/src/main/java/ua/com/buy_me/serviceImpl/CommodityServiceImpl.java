@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ua.com.buy_me.dto.CommodityDto;
+import ua.com.buy_me.dto.DtoUtilMapper;
 import ua.com.buy_me.entity.Commodity;
 import ua.com.buy_me.entity.User;
 import ua.com.buy_me.repository.CommodityRepository;
@@ -40,5 +42,11 @@ public class CommodityServiceImpl implements CommodityService{
 	public Commodity findByName(String name) {
 	
 		return commodityRepository.findByName(name);
+	}
+
+	@Override
+	public List<CommodityDto> findAllDto() {
+	
+		return DtoUtilMapper.listCommodityToCommodityDto(commodityRepository.findAll());
 	}
 }

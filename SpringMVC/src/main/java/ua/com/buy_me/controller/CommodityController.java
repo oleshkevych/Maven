@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ua.com.buy_me.dto.CommodityDto;
 import ua.com.buy_me.entity.Commodity;
 import ua.com.buy_me.service.CommodityService;
 import ua.com.buy_me.serviceImpl.CommodityServiceImpl;
@@ -24,7 +25,7 @@ public class CommodityController {
 
 	@RequestMapping(value="/commodity", method=RequestMethod.GET)
 	public String commodity(Model model){
-		List<Commodity> commodities = commodityService.findAll();
+		List<CommodityDto> commodities = commodityService.findAllDto();
 		model.addAttribute("commodity", new Commodity());
 		model.addAttribute("commodities", commodities);
 		System.out.println(commodityService.findByName("56"));
